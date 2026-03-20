@@ -117,3 +117,23 @@ Simulated netstat output was analyzed to identify unusual external connections.
 
 ## Conclusion
 A suspicious connection was identified, indicating possible unauthorized communication with an external server.
+
+# 6. Adversary Emulation
+
+## Objective
+To simulate attacker behavior and evaluate SOC detection capabilities.
+
+## Simulation Details
+
+| Timestamp            | TTP                  | Detection Status | Notes                        |
+|----------------------|----------------------|------------------|------------------------------|
+| 2025-08-18 17:00:00  | T1566 (Phishing)     | Detected         | Email blocked successfully   |
+
+## Tools Used
+MITRE Caldera (simulated), Wazuh
+
+## Analysis
+The simulated phishing attack was successfully detected and blocked by the security system.
+
+## Conclusion
+Adversary emulation helped validate detection mechanisms and improve SOC readiness.
