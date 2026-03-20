@@ -93,3 +93,27 @@ The alert was triaged successfully and marked for further investigation.
 
 ## Conclusion
 The incident occurred due to weak email security and lack of advanced filtering. Improvements in email security configuration are recommended.
+
+# 5. Evidence Analysis
+
+## Objective
+To analyze network connections and identify suspicious activity.
+
+## Analysis Performed
+Simulated netstat output was analyzed to identify unusual external connections.
+
+## Findings
+
+| Local Address        | Foreign Address      | Status       |
+|---------------------|----------------------|-------------|
+| 192.168.1.5:49732   | 185.199.110.153:443  | Normal      |
+| 192.168.1.5:49800   | 203.0.113.5:8080     | Suspicious  |
+
+## Chain of Custody
+
+| Item        | Description     | Collected By | Date       | Hash Value |
+|-------------|-----------------|--------------|------------|------------|
+| Network Log | Connection Data | SOC Analyst  | 2025-08-18 | SHA256     |
+
+## Conclusion
+A suspicious connection was identified, indicating possible unauthorized communication with an external server.
