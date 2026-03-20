@@ -72,6 +72,22 @@ To analyze the root cause of a phishing incident and improve future response str
 
 ## SOC Metrics
 
+# 4. Alert Triage
+
+## Objective
+To analyze and prioritize security alerts for effective incident response.
+
+## Alert Details
+
+| Alert ID | Description               | Source IP      | Priority | Status |
+|----------|--------------------------|----------------|----------|--------|
+| 005      | Suspicious File Download | 192.168.1.102  | High     | Open   |
+
+## Analysis
+The alert indicates a potentially malicious file download from an internal IP address. The high priority suggests immediate investigation is required.
+
+## Conclusion
+The alert was triaged successfully and marked for further investigation.
 - Mean Time to Detect (MTTD): 2 hours  
 - Mean Time to Respond (MTTR): 4 hours  
 
