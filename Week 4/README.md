@@ -137,3 +137,62 @@ The simulated phishing attack was successfully detected and blocked by the secur
 
 ## Conclusion
 Adversary emulation helped validate detection mechanisms and improve SOC readiness.
+
+# 7. Security Metrics and Executive Reporting
+
+## Objective
+To evaluate SOC performance using key security metrics and present findings.
+
+## Metrics
+
+- Mean Time to Detect (MTTD): 2 hours  
+- Mean Time to Respond (MTTR): 4 hours  
+- False Positive Rate: Low  
+- Dwell Time: 6 hours  
+
+## Analysis
+The SOC demonstrated efficient detection and response capabilities. The low false positive rate indicates accurate alerting, while the dwell time suggests room for improvement in early detection.
+
+## Executive Summary
+The SOC successfully detected and responded to simulated threats within acceptable timeframes. Automation and proactive threat hunting improved efficiency. However, enhancements in early detection mechanisms can further reduce dwell time and strengthen security posture.
+
+## Conclusion
+Security metrics provide valuable insights into SOC performance and help identify areas for continuous improvement.
+
+# 8. Capstone Project: Comprehensive SOC Incident Response
+
+## Objective
+To simulate a complete cyber attack scenario and perform detection, triage, response, and analysis.
+
+## Attack Simulation
+A Samba vulnerability was exploited using a simulated attack, representing unauthorized remote access.
+
+## Detection
+
+| Timestamp            | Source IP      | Alert Description | MITRE Technique |
+|----------------------|----------------|-------------------|-----------------|
+| 2025-08-18 16:00:00  | 192.168.1.102  | Samba Exploit     | T1210           |
+
+## Triage
+The alert was analyzed and marked as high priority due to potential system compromise.
+
+## Response and Containment
+- The affected system was isolated  
+- Malicious IP was blocked using simulated firewall controls  
+
+## SOAR Automation
+An automated response playbook was executed to block the IP and generate an incident case.
+
+## Root Cause Analysis
+The attack exploited a vulnerable service due to outdated system patches.
+
+## Metrics
+- MTTD: 2 hours  
+- MTTR: 4 hours  
+- Dwell Time: 6 hours  
+
+## Executive Summary
+A simulated cyber attack exploiting a Samba vulnerability was successfully detected and mitigated by the SOC. The system identified malicious activity through log monitoring and generated alerts for analysis. The incident was triaged as high priority, and immediate response actions were taken, including isolating the affected system and blocking the attacker’s IP address. Automation via SOAR playbooks improved response efficiency. Post-incident analysis revealed that the root cause was an unpatched vulnerability. Metrics such as MTTD and MTTR indicate effective SOC performance, although improvements in proactive patch management and early detection could further enhance security.
+
+## Conclusion
+The capstone project demonstrated end-to-end SOC operations, including detection, response, and continuous improvement.
