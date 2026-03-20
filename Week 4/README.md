@@ -54,3 +54,26 @@ Splunk Phantom (simulated), TheHive
 
 ## Conclusion
 The playbook successfully automated the response process, reducing manual effort and improving response time.
+
+# 3. Post-Incident Analysis
+
+## Objective
+To analyze the root cause of a phishing incident and improve future response strategies.
+
+## Root Cause Analysis (5 Whys)
+
+| Question | Answer |
+|----------|--------|
+| Why was the email opened? | User clicked malicious link |
+| Why was the link clicked? | Email appeared legitimate |
+| Why was it not detected? | Weak email filtering |
+| Why was filtering weak? | No advanced detection |
+| Why not enabled? | Poor configuration |
+
+## SOC Metrics
+
+- Mean Time to Detect (MTTD): 2 hours  
+- Mean Time to Respond (MTTR): 4 hours  
+
+## Conclusion
+The incident occurred due to weak email security and lack of advanced filtering. Improvements in email security configuration are recommended.
