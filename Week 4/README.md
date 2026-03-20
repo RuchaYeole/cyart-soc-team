@@ -32,3 +32,25 @@ T1078 – Valid Accounts
 
 ## Conclusion
 Suspicious privilege escalation was identified, indicating potential misuse of valid credentials.
+
+# 2. SOAR Playbook Development
+
+## Objective
+To automate incident response for phishing attacks using a SOAR playbook.
+
+## Playbook Description
+A playbook was designed to automatically respond to phishing alerts by validating the IP address, blocking malicious sources, and generating an incident ticket.
+
+## Playbook Steps
+
+| Step                     | Status  | Notes                      |
+|--------------------------|--------|----------------------------|
+| Check IP Reputation      | Success | IP identified as malicious |
+| Block IP                 | Success | 192.168.1.102 blocked      |
+| Create Incident Ticket   | Success | Case created               |
+
+## Tools Used
+Splunk Phantom (simulated), TheHive
+
+## Conclusion
+The playbook successfully automated the response process, reducing manual effort and improving response time.
