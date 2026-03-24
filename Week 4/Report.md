@@ -4,10 +4,10 @@ Theoretical Concepts
 Threat Hunting is a proactive approach where security analysts actively search for hidden threats that may bypass automated detection systems. Unlike reactive incident response, it focuses on identifying suspicious patterns early.
 
 Frameworks used:
-
 SqRR (Search, Query, Retrieve, Respond)
 TaHiTI (Targeted Hunting integrating Threat Intelligence)
-Data Sources
+
+*Data Sources*
 EDR logs
 Network traffic
 System event logs
