@@ -1,186 +1,229 @@
-# 1. Threat Hunting
+1. Threat Hunting
+Theoretical Concepts
 
-## Objective
-To identify suspicious privilege escalation activities using log analysis.
+Threat Hunting is a proactive approach where security analysts actively search for hidden threats that may bypass automated detection systems. Unlike reactive incident response, it focuses on identifying suspicious patterns early.
 
-## Hypothesis
-Unauthorized users may have gained administrative privileges.
+Frameworks used:
 
-## Methodology
-Logs were analyzed using Event ID 4672, which indicates assignment of special privileges.
+SqRR (Search, Query, Retrieve, Respond)
+TaHiTI (Targeted Hunting integrating Threat Intelligence)
+Data Sources
+EDR logs
+Network traffic
+System event logs
+Threat intelligence feeds
+Practical Implementation
 
-## Findings
+Steps Performed:
 
-| Timestamp            | User      | Event ID | Notes                     |
-|----------------------|----------|----------|---------------------------|
-| 2025-08-18 15:00:00  | testuser | 4672     | Unexpected admin access   |
+Defined hypothesis for privilege escalation
+Queried logs using Event ID 4672
+Identified suspicious activity
+Mapped to MITRE ATT&CK T1078
+Used AlienVault OTX for threat intelligence
+Cross-referenced using Velociraptor (SELECT * FROM processes)
+Findings
+Timestamp	User	Event ID	Notes
+2026-03-22	testuser	4672	Admin privilege assigned
+Threat Intelligence Integration
 
-## MITRE ATT&CK Mapping
-T1078 – Valid Accounts
+AlienVault OTX was used to identify suspicious IP indicators and validate them using Velociraptor queries.
 
-## Conclusion
-Suspicious privilege escalation was identified, indicating potential misuse of valid credentials.
+Hunting Report (100 words)
 
-# 2. SOAR Playbook Development
+The threat hunting activity focused on identifying unauthorized privilege escalation using Event ID 4672. A hypothesis was developed and validated using log analysis. Threat intelligence from AlienVault OTX was used to identify suspicious indicators, which were further analyzed using Velociraptor queries. The findings were mapped to MITRE ATT&CK technique T1078 (Valid Accounts). The activity demonstrated how proactive threat hunting can identify hidden threats that may bypass automated detection systems. This approach improves early detection and enhances SOC capabilities in identifying potential security breaches.
 
-## Objective
-To automate incident response for phishing attacks using a SOAR playbook.
+2. SOAR Automation
+Theoretical Concepts
 
-## Playbook Description
-A playbook was designed to automatically respond to phishing alerts by validating the IP address, blocking malicious sources, and generating an incident ticket.
+SOAR (Security Orchestration, Automation, and Response) automates SOC workflows. It includes:
 
-## Playbook Steps
+Orchestration (tool integration)
+Automation (task execution)
+Response (incident handling)
+Integration
+Wazuh (SIEM)
+TheHive (incident management)
+Practical Implementation
 
-| Step                     | Status  | Notes                      |
-|--------------------------|--------|----------------------------|
-| Check IP Reputation      | Success | IP identified as malicious |
-| Block IP                 | Success | 192.168.1.102 blocked      |
-| Create Incident Ticket   | Success | Case created               |
+Steps Performed:
 
-## Tools Used
-Splunk Phantom (simulated), TheHive
+Simulated phishing alert in Wazuh
+Triggered SOAR playbook
+Checked IP reputation
+Blocked IP using CrowdSec
+Created case in TheHive
+Playbook Table
+Step	Status	Notes
+Check IP	Success	Malicious
+Block IP	Success	Blocked
+Create Ticket	Success	Created
+Playbook Testing
 
-## Conclusion
-The playbook successfully automated the response process, reducing manual effort and improving response time.
+A phishing alert was simulated in Wazuh, and the playbook successfully executed all actions automatically.
 
-# 3. Post-Incident Analysis
+Playbook Summary (50 words)
 
-## Objective
-To analyze the root cause of a phishing incident and improve future response strategies.
+The SOAR playbook automated the phishing response process by validating IP reputation, blocking malicious IP addresses, and creating incident tickets. This reduced manual effort and improved response time. Integration with Wazuh and TheHive enabled seamless workflow execution and efficient incident handling.
 
-## Root Cause Analysis (5 Whys)
+3. Post-Incident Analysis
+Theoretical Concepts
 
-| Question | Answer |
-|----------|--------|
-| Why was the email opened? | User clicked malicious link |
-| Why was the link clicked? | Email appeared legitimate |
-| Why was it not detected? | Weak email filtering |
-| Why was filtering weak? | No advanced detection |
-| Why not enabled? | Poor configuration |
+Post-incident analysis identifies root causes and improves future response. Techniques include:
 
-## SOC Metrics
+5 Whys
+Fishbone Diagram
+Practical Implementation
+5 Whys
+Question	Answer
+Why clicked?	Malicious link
+Why trusted?	Legit email
+Why not detected?	Weak filtering
+Why weak?	No advanced detection
+Why missing?	Poor configuration
+Fishbone Diagram
 
-# 4. Alert Triage
+A Fishbone Diagram was created using Draw.io to identify causes related to process, technology, and user awareness.
 
-## Objective
-To analyze and prioritize security alerts for effective incident response.
+Metrics
+MTTD: 2 hours
+MTTR: 4 hours
+Lessons Learned
+Improve email filtering
+Train users
+Enhance detection rules
+Continuous Improvement
+Implement advanced security tools
+Improve monitoring
+Reduce detection time
+4. Alert Triage
+Theoretical Concepts
 
-## Alert Details
+Alert triage prioritizes alerts based on severity and impact.
 
-| Alert ID | Description               | Source IP      | Priority | Status |
-|----------|--------------------------|----------------|----------|--------|
-| 005      | Suspicious File Download | 192.168.1.102  | High     | Open   |
+Practical Implementation
 
-## Analysis
-The alert indicates a potentially malicious file download from an internal IP address. The high priority suggests immediate investigation is required.
+Steps:
 
-## Conclusion
-The alert was triaged successfully and marked for further investigation.
-- Mean Time to Detect (MTTD): 2 hours  
-- Mean Time to Respond (MTTR): 4 hours  
+Reviewed alert
+Identified IP
+Assigned priority
+Validated using VirusTotal
+Alert Table
+Alert ID	Description	IP	Priority
+005	File Download	192.168.1.102	High
+Automated Validation
 
-## Conclusion
-The incident occurred due to weak email security and lack of advanced filtering. Improvements in email security configuration are recommended.
+File hash was checked using VirusTotal and confirmed as malicious.
 
-# 5. Evidence Analysis
+5. Evidence Analysis
+Theoretical Concepts
 
-## Objective
-To analyze network connections and identify suspicious activity.
+Evidence analysis involves examining logs and maintaining integrity using chain-of-custody.
 
-## Analysis Performed
-Simulated netstat output was analyzed to identify unusual external connections.
+Tools Used
+Velociraptor
+FTK Imager
+Practical Implementation
 
-## Findings
+Steps:
 
-| Local Address        | Foreign Address      | Status       |
-|---------------------|----------------------|-------------|
-| 192.168.1.5:49732   | 185.199.110.153:443  | Normal      |
-| 192.168.1.5:49800   | 203.0.113.5:8080     | Suspicious  |
+Collected logs
+Analyzed network connections
+Identified suspicious IP
+Findings
+Local	Foreign	Status
+192.168.x	185.x	Normal
+192.168.x	203.x	Suspicious
+Chain of Custody
+Item	Description	Collected By	Date	Hash
+Log	Network Data	SOC Analyst	2026-03-22	SHA256
+6. Adversary Emulation
+Theoretical Concepts
 
-## Chain of Custody
+Adversary emulation simulates attacker behavior using MITRE ATT&CK.
 
-| Item        | Description     | Collected By | Date       | Hash Value |
-|-------------|-----------------|--------------|------------|------------|
-| Network Log | Connection Data | SOC Analyst  | 2025-08-18 | SHA256     |
+Tools
+MITRE Caldera
+Wazuh
+Red vs Blue
+Red Team: Attacker
+Blue Team: Defender
+Practical Implementation
 
-## Conclusion
-A suspicious connection was identified, indicating possible unauthorized communication with an external server.
+Steps:
 
-# 6. Adversary Emulation
+Simulated phishing attack (T1566)
+Generated logs
+Detected in SIEM
+Table
+Timestamp	Technique	Status
+2026-03-22	T1566	Detected
+Emulation Report (100 words)
 
-## Objective
-To simulate attacker behavior and evaluate SOC detection capabilities.
+The adversary emulation simulated a phishing attack using MITRE ATT&CK technique T1566. The attack was detected by the monitoring system, and alerts were generated in real-time. The SOC team responded efficiently by analyzing and mitigating the threat. This exercise demonstrated the effectiveness of detection mechanisms while highlighting the need for improved early-stage prevention. Adversary emulation helps organizations test their defenses and improve detection capabilities by simulating real-world attack scenarios.
 
-## Simulation Details
+7. Security Metrics
+Theoretical Concepts
 
-| Timestamp            | TTP                  | Detection Status | Notes                        |
-|----------------------|----------------------|------------------|------------------------------|
-| 2025-08-18 17:00:00  | T1566 (Phishing)     | Detected         | Email blocked successfully   |
+SOC performance is measured using:
 
-## Tools Used
-MITRE Caldera (simulated), Wazuh
+MTTD
+MTTR
+Dwell Time
+False Positive Rate
+Metrics
+MTTD: 2 hours
+MTTR: 4 hours
+Dwell Time: 6 hours
+False Positive Rate: Low
 
-## Analysis
-The simulated phishing attack was successfully detected and blocked by the security system.
+Executive Report (150 words)
 
-## Conclusion
-Adversary emulation helped validate detection mechanisms and improve SOC readiness.
+The SOC demonstrated effective performance in detecting and responding to security incidents. The Mean Time to Detect (MTTD) and Mean Time to Respond (MTTR) were within acceptable limits, indicating efficient monitoring and response capabilities. The low false positive rate reflects accurate alerting mechanisms, reducing unnecessary workload on analysts. However, the dwell time indicates that improvements are needed in early detection to minimize the impact of threats. Implementing advanced monitoring systems, enhancing detection rules, and increasing automation can further improve SOC efficiency. Overall, the SOC shows strong operational capability, with opportunities for improvement in proactive threat detection and faster response times.
 
-# 7. Security Metrics and Executive Reporting
+Continuous Improvement
+Improve detection speed
+Enhance automation
+Reduce false positives
+8. Capstone Project
+Tools Used
+Metasploit
+Wazuh
+TheHive
+CrowdSec
+MITRE Caldera
+Practical Implementation
 
-## Objective
-To evaluate SOC performance using key security metrics and present findings.
+Steps:
 
-## Metrics
+Simulated attack using Metasploit
+Generated logs
+Detected in Wazuh
+Created alert
+Performed triage in TheHive
+Blocked IP using CrowdSec
+Isolated system
+Performed RCA
+Detection Table
+Timestamp	IP	Attack	MITRE
+2026-03-22	192.168.1.102	Samba Exploit	T1210
+Response
+IP blocked
+System isolated
+Root Cause
 
-- Mean Time to Detect (MTTD): 2 hours  
-- Mean Time to Respond (MTTR): 4 hours  
-- False Positive Rate: Low  
-- Dwell Time: 6 hours  
+Unpatched vulnerability
 
-## Analysis
-The SOC demonstrated efficient detection and response capabilities. The low false positive rate indicates accurate alerting, while the dwell time suggests room for improvement in early detection.
+Metrics
+MTTD: 2 hrs
+MTTR: 4 hrs
+Executive Summary (300 words)
 
-## Executive Summary
-The SOC successfully detected and responded to simulated threats within acceptable timeframes. Automation and proactive threat hunting improved efficiency. However, enhancements in early detection mechanisms can further reduce dwell time and strengthen security posture.
+A simulated cyber attack was conducted using a Samba exploit to represent exploitation of remote services. The attack was initiated using Metasploit and generated logs in the monitoring system. Wazuh successfully detected the attack and generated alerts, which were further analyzed in TheHive. The SOC team performed alert triage and identified the attack as high priority. Immediate response actions were taken, including blocking the attacker’s IP using CrowdSec and isolating the affected system to prevent further compromise.
 
-## Conclusion
-Security metrics provide valuable insights into SOC performance and help identify areas for continuous improvement.
+SOAR automation was used to streamline the response process, reducing manual intervention and improving efficiency. Adversary emulation using MITRE Caldera validated detection capabilities and helped identify potential gaps. Post-incident analysis was conducted using the 5 Whys technique, revealing that the root cause was an unpatched vulnerability.
 
-# 8. Capstone Project: Comprehensive SOC Incident Response
+Security metrics such as MTTD and MTTR indicated effective detection and response, although improvements are needed in early detection to reduce dwell time. Recommendations include implementing regular patch management, improving monitoring systems, and enhancing detection rules.
 
-## Objective
-To simulate a complete cyber attack scenario and perform detection, triage, response, and analysis.
-
-## Attack Simulation
-A Samba vulnerability was exploited using a simulated attack, representing unauthorized remote access.
-
-## Detection
-
-| Timestamp            | Source IP      | Alert Description | MITRE Technique |
-|----------------------|----------------|-------------------|-----------------|
-| 2025-08-18 16:00:00  | 192.168.1.102  | Samba Exploit     | T1210           |
-
-## Triage
-The alert was analyzed and marked as high priority due to potential system compromise.
-
-## Response and Containment
-- The affected system was isolated  
-- Malicious IP was blocked using simulated firewall controls  
-
-## SOAR Automation
-An automated response playbook was executed to block the IP and generate an incident case.
-
-## Root Cause Analysis
-The attack exploited a vulnerable service due to outdated system patches.
-
-## Metrics
-- MTTD: 2 hours  
-- MTTR: 4 hours  
-- Dwell Time: 6 hours  
-
-## Executive Summary
-A simulated cyber attack exploiting a Samba vulnerability was successfully detected and mitigated by the SOC. The system identified malicious activity through log monitoring and generated alerts for analysis. The incident was triaged as high priority, and immediate response actions were taken, including isolating the affected system and blocking the attacker’s IP address. Automation via SOAR playbooks improved response efficiency. Post-incident analysis revealed that the root cause was an unpatched vulnerability. Metrics such as MTTD and MTTR indicate effective SOC performance, although improvements in proactive patch management and early detection could further enhance security.
-
-## Conclusion
-The capstone project demonstrated end-to-end SOC operations, including detection, response, and continuous improvement.
+This capstone project demonstrated a complete SOC workflow, including attack simulation, detection, triage, response, and continuous improvement, highlighting the importance of integrated security operations.
