@@ -59,6 +59,7 @@ Practical experience in log analysis and threat detection
 Configuration of SIEM-based alert rules
 Implementation of intrusion detection using Snort
 Preparation of structured incident documentation
-Conclusion
+  
+  Conclusion
 
 This task provided practical exposure to SOC monitoring and detection processes. It strengthened understanding of log analysis, alert generation, intrusion detection, and incident response workflows, which are essential for entry-level SOC analyst roles.
