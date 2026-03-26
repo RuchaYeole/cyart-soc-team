@@ -14,7 +14,7 @@ SIEM is a system used to collect, aggregate, and analyze logs from multiple sour
 
 MITRE ATT&CK Framework
 
-Tactic: Credential Access
+Tactic: Credential Access<br>
 Technique: T1110 – Brute Force
 
 Practical Work Performed
@@ -22,25 +22,29 @@ Practical Work Performed
 
 Generated multiple failed login attempts and analyzed Windows Security Logs by filtering Event ID 4625, which represents failed login attempts.
 
-Observation: Multiple failed login attempts from IP address 192.168.1.100 indicate potential brute-force activity.
+Observation:<br>
+Multiple failed login attempts from IP address 192.168.1.100 indicate potential brute-force activity.
 
 2. SIEM Alert Detection
 
 Configured a detection rule for 5 failed login attempts within 5 minutes and verified alert generation in the SIEM system.
 
-Observation: The SIEM system generated a critical alert after detecting repeated failed login attempts.
+Observation:<br>
+The SIEM system generated a critical alert after detecting repeated failed login attempts.
 
 3. Snort IDS Testing
 
 Configured a custom intrusion detection rule and tested it using an HTTP request.
 
-Observation: Snort successfully detected the defined malicious traffic pattern and generated an alert.
+Observation:<br>
+Snort successfully detected the defined malicious traffic pattern and generated an alert.
 
 4. Dashboard Monitoring
 
 Created a dashboard to visualize failed login attempts and identify the top source IP generating alerts.
 
-Observation: The IP address 192.168.1.100 generated the highest number of failed login attempts.
+Observation:<br>
+The IP address 192.168.1.100 generated the highest number of failed login attempts.
 
 Incident Summary
 Field	Value
@@ -55,7 +59,6 @@ Practical experience in log analysis and threat detection
 Configuration of SIEM-based alert rules
 Implementation of intrusion detection using Snort
 Preparation of structured incident documentation
-
 Conclusion
 
 This task provided practical exposure to SOC monitoring and detection processes. It strengthened understanding of log analysis, alert generation, intrusion detection, and incident response workflows, which are essential for entry-level SOC analyst roles.
